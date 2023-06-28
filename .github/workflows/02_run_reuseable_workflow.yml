@@ -52,7 +52,7 @@ jobs:
 
   workflow-in-jobs:
     needs: [do-it-next-job]
-    uses: ./.github/jobs/02_reusable_workflow_jobs.yml
+    uses: ./.github/workflows/02_reusable_workflow_jobs.yml
     with:
       build_command: mvn clean install
       test_command: mvn test
