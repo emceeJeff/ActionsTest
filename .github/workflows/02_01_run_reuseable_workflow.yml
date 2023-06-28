@@ -1,0 +1,49 @@
+# This is a basic workflow to showcase the use of Reusable Workflows
+
+name: Reusable Workflow user
+
+on:
+  workflow_dispatch:
+
+jobs:
+  do-it:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: List files
+        run: ls -la
+
+      - name: Show deployment details
+        run: |
+          echo Branch: ${{ github.ref_name }}
+          echo Commit: ${{ github.sha }}
+          echo Launched by: ${{ github.actor }}
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: Dockerfile
+
+      - name: List files post upload
+        run: ls -la
+
+  workflow-in-steps:
+    steps:
+      - name: LS the dir inside of the ran script
+        run: ls -la
+      - uses: .github/workflows/02_02_reusable_workflow_in_steps.yml
+        with:
+          build_command: mvn clean install
+          test_command: mvn test
+
+  workflow-in-jobs:
+    uses: .github/workflows/02_03_reusable_workflow_in_jobs.yml
+    with:
+      build_command: mvn clean install
+      test_command: mvn test

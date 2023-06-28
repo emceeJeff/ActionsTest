@@ -1,0 +1,33 @@
+name: build and test workflow
+
+on:
+  workflow_call:
+    inputs:
+      build_command:
+        required: true
+        type: string
+      test_command:
+        type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show calling details
+        run: |
+          echo build_command : ${{ inputs.build_command }}
+          echo test_command  : ${{ inputs.test_command }}
+          echo Launched by   : ${{ github.actor }}
+
+      - name: List files inside the reusable workflow in steps
+        run: ls -la
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+
+      - name: List files inside the reusable workflow in steps post download Artifacts
+        run: ls -la
+
