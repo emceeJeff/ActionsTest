@@ -33,15 +33,21 @@ jobs:
       - name: List files post upload
         run: ls -la
 
-  workflow-in-steps:
+  do-it-next-job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: LS the dir inside of the ran script
+      - name: List files
         run: ls -la
-      - uses: ./.github/workflows/02_02_reusable_workflow_in_steps.yml
+
+      - name: Download Artifacts
+        uses: actions/download-artifact@v2
         with:
-          build_command: mvn clean install
-          test_command: mvn test
+          name: my-artifact
+
+      - name: List files post download
+        run: ls -la
+
 
   workflow-in-jobs:
     uses: ./.github/workflows/02_03_reusable_workflow_in_jobs.yml

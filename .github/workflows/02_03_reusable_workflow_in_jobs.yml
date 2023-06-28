@@ -10,7 +10,7 @@ on:
         type: string
 
 jobs:
-  build:
+  job-1:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,7 +20,13 @@ jobs:
           echo test_command  : ${{ inputs.test_command }}
           echo Launched by   : ${{ github.actor }}
 
-      - name: List files inside the reusable workflow in the jobs
+      - name: List files inside the reusable workflow in steps
+        run: ls -la
+  job-2:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: List files inside the reusable workflow in steps
         run: ls -la
 
       - name: Download Artifacts
