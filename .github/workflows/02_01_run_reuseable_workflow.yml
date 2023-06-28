@@ -56,3 +56,7 @@ jobs:
     with:
       build_command: mvn clean install
       test_command: mvn test
+
+    steps:
+      - name: List files
+        run: ls -la
