@@ -1,6 +1,6 @@
 # This is a basic workflow to showcase the use of Reusable Workflows
 
-name: Reusable Workflow user
+name: User submitted workflow
 
 on:
   workflow_dispatch:
@@ -37,13 +37,13 @@ jobs:
     steps:
       - name: LS the dir inside of the ran script
         run: ls -la
-      - uses: .github/workflows/02_02_reusable_workflow_in_steps.yml
+      - uses: ./.github/workflows/02_02_reusable_workflow_in_steps.yml
         with:
           build_command: mvn clean install
           test_command: mvn test
 
   workflow-in-jobs:
-    uses: .github/workflows/02_03_reusable_workflow_in_jobs.yml
+    uses: ./.github/workflows/02_03_reusable_workflow_in_jobs.yml
     with:
       build_command: mvn clean install
       test_command: mvn test
