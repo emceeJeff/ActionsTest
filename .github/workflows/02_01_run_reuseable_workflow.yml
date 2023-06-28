@@ -34,6 +34,7 @@ jobs:
         run: ls -la
 
   workflow-in-steps:
+    runs-on: ubuntu-latest
     steps:
       - name: LS the dir inside of the ran script
         run: ls -la
