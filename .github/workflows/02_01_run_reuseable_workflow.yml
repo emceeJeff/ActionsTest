@@ -34,6 +34,7 @@ jobs:
         run: ls -la
 
   do-it-next-job:
+    needs: [do-it]
     runs-on: ubuntu-latest
 
     steps:
@@ -50,6 +51,7 @@ jobs:
 
 
   workflow-in-jobs:
+    needs: [do-it]
     uses: ./.github/workflows/02_03_reusable_workflow_in_jobs.yml
     with:
       build_command: mvn clean install
